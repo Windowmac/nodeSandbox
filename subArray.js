@@ -17,4 +17,23 @@ const subArray = (arr) => {
     return arr;
 }
 
-module.exports = subArray;
+function newArr (arr, k) {
+    if (arr.length > 0) {
+      const revSubArr = arr.slice(0, k).reverse();
+      console.log('revSub is: ', revSubArr);
+      console.log(arr.slice(0));
+      return revSubArr.concat(newArr(arr.slice(k), k));
+    } else {
+        return arr;
+    }
+  }
+//console.log(newArr([1, 2, 3, 4, 5, 6], 3));
+// console.log([].slice(3));
+// console.log();
+
+//321 + 456
+//321 + 654 + []
+//321654
+console.log([3, 2, 1].concat([6, 5, 4].concat([])));
+
+module.exports = [subArray, newArr];

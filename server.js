@@ -6,6 +6,7 @@ const path = require('path');
 const bigConcat = require('./bigConcat');
 const subArray = require('./subArray');
 const sort = require('./sort');
+const waterArea = require('./waterArea');
 
 app.use(express.json());
 app.use(express.urlencoded( { extended: true }));
@@ -27,9 +28,14 @@ app.post('/bigConcat', (req, res) => {
     res.status(200).json(bigConcat(arr1, arr2, arr3));
 });
 
-app.post('/sort', (req, res) => {
+app.post('/sort', (req, response) => {
     const arr = req.body.userInput1.split('').map((num) => parseInt(num));
-    res.status(200).json(sort(arr));
+    response.status(200).json(sort(arr));
+});
+
+app.post('/waterArea', (req, res) => {
+    const arr = req.body.userInput.split('').map((num) => parseInt(num));
+    res.status(200).json(waterArea(arr));
 })
 
 app.listen(PORT, () => {
